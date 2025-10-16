@@ -14,25 +14,20 @@ Click Button
     
 Click image from Arguments
     [Arguments]    ${img}
-    ${image}   Set Variable    ${CURDIR}/../../resources/testdata/image/${img}
+    ${image}   Set Variable    ${CURDIR}\\..\\..\\resources\\testdata\\image\\${img}
     SikuLiLibrary.Wait Until Screen Contain    ${image}    5
-    SikuliLibrary.Click    ${image}
+    SikuliLibrary.Double Click    ${image}
 
-Switch tab to Complex control
-    # [Arguments]    ${tab}
-    Wait Until Element Exist    ${Complexcontrolstab}
-    FlaUILibrary.Click    ${Complexcontrolstab}
-    Wait Until Element Exist    ${complextabpage}
-Double Click  
+check if screen contain image
+    [Arguments]    ${img}
+    ${image}   Set Variable    ${CURDIR}\\..\\..\\resources\\testdata\\image\\${img}
+    SikuLiLibrary.Wait Until Screen Contain    ${image}    5
+
+Wait until element is exist then double Click
     [Arguments]    ${button}
     FlaUILibrary.Wait Until Element Exist    ${button} 
     FlaUILibrary.Double Click    ${button}
 
-verify that tree is expand
-    FlaUILibrary.Element Should Exist    ${Treeitemlv2a}
-
-get image coordinate
-    [Arguments]    ${img}
-    ${image}    Set Variable   ${CURDIR}/../../resources/testdata/image/${img}  
-    ${Path}    Normalize Path     ${image}
-    ${get_cor}    Get Image Coordinates    ${Path}
+verify that element should exist
+    [Arguments]    ${element}
+    FlaUILibrary.Element Should Exist    ${element}
