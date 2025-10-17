@@ -1,9 +1,10 @@
 *** Settings ***
 Resource    import.robot
+Library    OperatingSystem
 
 *** Keywords ***
 Open Winforms app
-    Launch Application    ${apppath}
+    FlaUILibrary.Launch Application   ${apppath}
 
 Close Winforms app
     SikuLiLibrary.Close Application     ${apppath}
@@ -11,10 +12,11 @@ Click Button
     [Arguments]    ${button}
     FlaUILibrary.Click    ${button}
     
-Click image
+Click image from Arguments
     [Arguments]    ${img}
-    SikuLiLibrary.Wait Until Screen Contain    ${img}    5
-    SikuliLibrary.Click    ${img}
+    ${image}   Set Variable    ${CURDIR}/../../resources/testdata/image/${img}
+    SikuLiLibrary.Wait Until Screen Contain    ${image}    5
+    SikuliLibrary.Click    ${image}
 
 Switch tab to Complex control
     # [Arguments]    ${tab}
@@ -28,3 +30,9 @@ Double Click
 
 verify that tree is expand
     FlaUILibrary.Element Should Exist    ${Treeitemlv2a}
+
+get image coordinate
+    [Arguments]    ${img}
+    ${image}    Set Variable   ${CURDIR}/../../resources/testdata/image/${img}  
+    ${Path}    Normalize Path     ${image}
+    ${get_cor}    Get Image Coordinates    ${Path}

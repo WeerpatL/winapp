@@ -17,8 +17,7 @@ Select Radiobutton2
 
 move progressbar to left
     Focus    ${Slider}
-    FlaUiLibrary.Drag And Drop    ${sliderthumb}    ${moverightslider}             
-
+    FlaUILibrary.Drag And Drop     ${sliderthumb}    ${numer}
 Select item 1 from combobox
     Wait Until Element Exist    ${combobox}
     Select Combobox Item By Index    ${combobox}    0
